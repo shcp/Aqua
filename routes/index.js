@@ -1,8 +1,10 @@
-const Router = require('koa-router')
+const Router = require('koa-router');
 const router = new Router();
 
-router.get('/', (ctx, next) => {
-    ctx.body = 'Hi';
+
+router.get('/health', (ctx, next) => {
+    ctx.body = 'success';
 });
+
 
 module.exports = router;
