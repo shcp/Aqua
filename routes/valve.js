@@ -1,4 +1,5 @@
 const Router = require('koa-router');
+const gpio = require('./../core/driver/gpio');
 
 const valveStatus = {
     open: 1,
@@ -9,30 +10,19 @@ const router = new Router({
     prefix: '/valve'
 });
 
-router.get('/:id', (ctx, next) => {
-
-});
-
-router.put('/:id', (ctx, next) => {
-    const status = ctx.params.status;
-    switch (status) {
+router.put('/demo', async (ctx, next) => {
+    let request = ctx.request;
+    let reqBody = request.body;
+    console.log(reqBody);
+    var result = 'success' + reqBody.status;
+    switch (reqBody.status) {
         case valveStatus.open:
+            gpio.openValve();
+            result = "open success";
             break;
         case valveStatus.close:
-            break;
-        default:
-            break;
-    }
-    ctx.body = 'success';
-});
-
-router.put('/demo', (ctx, next) => {
-    const vStatus = ctx.params.valveStatus;
-    var result = 'success';
-    switch (vStatus) {
-        case valveStatus.open:
-            break;
-        case valveStatus.close:
+            gpio.closeValve();
+            result = "close success";
             break;
         default:
             result = 'fail';
@@ -40,7 +30,6 @@ router.put('/demo', (ctx, next) => {
     }
     ctx.body = result;
 })
-
 
 
 module.exports = router;

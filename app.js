@@ -1,15 +1,15 @@
 const Koa = require('koa');
-const Router = require('koa-router');
-const requireDir = require('require-directory');
+const bodyParser = require('koa-bodyparser');
+const indexRouter = require('./routes/index');
+const valveRouter = require('./routes/valve');
 
 const app = new Koa();
-const routerModules = requireDir(module, './routes', { visit: loadRouter });
 
-function loadRouter(obj) {
-    if (obj instanceof Router) {
-        app.use(obj.routes())
-            .use(obj.allowedMethods());
-    }
-}
-
-app.listen(30000);
+app.use(bodyParser())
+    .use(indexRouter.routes())
+    .use(indexRouter.allowedMethods())
+    .use(valveRouter.routes())
+    .use(valveRouter.allowedMethods())
+    .listen(30000);
+    
+console.log("===app start===");
