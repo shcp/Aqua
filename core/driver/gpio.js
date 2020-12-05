@@ -6,7 +6,7 @@ const options = {
     mock: undefined,
     close_on_exit: true,
 };
-const valveNumber = 4;
+const valveNumber = 19;
 const waterLevel = 5;
 rpio.init(options);
 rpio.open(valveNumber, rpio.OUTPUT, rpio.LOW);
