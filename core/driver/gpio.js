@@ -6,13 +6,14 @@ const options = {
     mock: undefined,
     close_on_exit: true,
 };
-const valveNumber = 19;
-const waterLevel = 5;
+const valveNumber = 15;
+const waterLevel = 13;
 rpio.init(options);
 rpio.open(valveNumber, rpio.OUTPUT, rpio.LOW);
 rpio.open(waterLevel, rpio.INPUT, rpio.LOW);
 
 function read(pin) {
+    console.log(waterLevel + "-read-" + pin);
     return rpio.read(pin);
 }
 rpio.poll(waterLevel, read);
