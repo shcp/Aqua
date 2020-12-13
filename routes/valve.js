@@ -18,10 +18,10 @@ router.put('/test', async (ctx, next) => {
     switch (body.status) {
         case valveStatus.open:
             gpio.outPutHigh(body.pin);
-            result = "open " + body.put + " success";
+            result = "open " + body.pin + " success";
             break;
         case valveStatus.close:
-            gpio.outPutLow(body.put);
+            gpio.outPutLow(body.pin);
             result = "close " + body.pin + " success";
             break;
         default:
