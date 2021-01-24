@@ -29,8 +29,6 @@ var job = schedule.scheduleJob("0/10 * * * * *", function(){
         gpio.outPutLow(smallValve);
         console.log('close valve :'+moment().format());
     }
-    console.log("day:"+dayOfWeek+"|hour:"+hour+"|min:"+minute);
-    console.log(moment().format());
  });
 
 
