@@ -19,16 +19,18 @@ var job = schedule.scheduleJob("0/10 * * * * *", function(){
         gpio.outPutLow(smallValve);
         console.log('close valve :'+moment().format());
     }
-    if (dayOfWeek == 0 && hour == 15 && minute == 0){
+    if (dayOfWeek == 0 && hour == 15 && minute == 5){
         gpio.outPutHigh(bigValve);
         gpio.outPutHigh(smallValve);
         console.log('open valve :'+moment().format());
     }
-    if (dayOfWeek == 0 && hour == 15 && minute == 1){
+    if (dayOfWeek == 0 && hour == 15 && minute == 6){
         gpio.outPutLow(bigValve);
         gpio.outPutLow(smallValve);
         console.log('close valve :'+moment().format());
     }
+    console.log("day:"+dayOfWeek+"|hour:"+hour+"|min:"+minute);
+    console.log(moment().format());
  });
 
 
