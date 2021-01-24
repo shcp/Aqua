@@ -19,8 +19,15 @@ var job = schedule.scheduleJob("0/10 * * * * *", function(){
         gpio.outPutLow(smallValve);
         console.log('close valve :'+moment().format());
     }
-    if (dayOfWeek == 0 && hour == 14 && minute == 50){
-        console.log('test :'+moment().format());
+    if (dayOfWeek == 0 && hour == 15 && minute == 0){
+        gpio.outPutHigh(bigValve);
+        gpio.outPutHigh(smallValve);
+        console.log('open valve :'+moment().format());
+    }
+    if (dayOfWeek == 0 && hour == 15 && minute == 1){
+        gpio.outPutLow(bigValve);
+        gpio.outPutLow(smallValve);
+        console.log('close valve :'+moment().format());
     }
  });
 
